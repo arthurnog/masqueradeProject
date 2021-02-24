@@ -18,15 +18,17 @@ func get_input():
 	if L:
 		vel.x -= 1
 		$AnimatedSprite.flip_h = true
-	if U:
+	if U and is_on_floor():
 		vel.y += jump
+		#$AnimatedSprite.play("jump")
 	
-	if vel.x != 0 && vel.y == 0:
+	if vel.x != 0 and is_on_floor():
 		$AnimatedSprite.play("run")
-	elif vel.y != 0:
-		$AnimatedSprite.play("jump")
-	else:
+	if vel.x == 0 and is_on_floor():
 		$AnimatedSprite.play("idle")
+	if not is_on_floor():
+		$AnimatedSprite.play("jump")
+	
 	
 	vel.x = vel.x*speed
 
@@ -34,5 +36,5 @@ func get_input():
 func _physics_process(delta):
 	vel.y = vel.y + grav
 	get_input()
-	vel = move_and_slide(vel)
+	vel = move_and_slide(vel, Vector2.UP)
 	print(vel.y)
