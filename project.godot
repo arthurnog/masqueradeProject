@@ -16,8 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="masqueradeProject"
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://scenes/Level0.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/vsync/use_vsync=false
 
 [input]
 

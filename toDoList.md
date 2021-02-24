@@ -1,9 +1,9 @@
-1.Floor
+1.Floor (done)
 2.Player
-    -walk
-    -jump
-3.Test (1)
-4.Enemy (player attack)
+    -walk(done)
+    -jump(done)
+3.Test (1)(done)
+4.Enemy (player attack, damage)
 5.Boss
 6.Level
 7.Assets

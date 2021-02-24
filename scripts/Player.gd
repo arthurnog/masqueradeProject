@@ -3,6 +3,7 @@ extends KinematicBody2D
 export (int) var speed = 130
 export (int) var grav = 50
 export (int) var jump = -1000
+export (int) var hearts = 3
 
 var vel = Vector2() #movimentação do personagem (x,y)
 
@@ -37,4 +38,3 @@ func _physics_process(delta):
 	vel.y = vel.y + grav
 	get_input()
 	vel = move_and_slide(vel, Vector2.UP)
-	print(vel.y)
