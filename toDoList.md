@@ -3,7 +3,7 @@
     -walk(done)
     -jump(done)
 3.Test (1)(done)
-4.Enemy (player attack, damage)
+4.Enemy simple (player attack, damage) (done)
 5.Boss
 6.Level
 7.Assets

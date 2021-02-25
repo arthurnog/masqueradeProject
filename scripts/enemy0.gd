@@ -24,3 +24,9 @@ func _physics_process(delta):
 	get_pos()
 	vel = move_and_slide(vel, Vector2.UP)
 	pass
+
+
+func _on_Area2D_area_entered(area):
+	if area.is_in_group("damage"):
+		queue_free()
+	pass # Replace with function body.

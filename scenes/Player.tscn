@@ -146,7 +146,7 @@ radius = 37.3333
 height = 32.0
 
 [sub_resource type="RectangleShape2D" id=31]
-extents = Vector2( 32, 16 )
+extents = Vector2( 21.333, 53.3333 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
@@ -160,26 +160,33 @@ jump = -1150
 scale = Vector2( 2, 2 )
 frames = SubResource( 22 )
 animation = "atk"
-frame = 5
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 scale = Vector2( 2, 2 )
 shape = SubResource( 23 )
 
 [node name="HitBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-visible = false
 shape = SubResource( 24 )
 
-[node name="DamageArea" type="Area2D" parent="."]
-position = Vector2( 58.6667, 0 )
+[node name="DamageArea" type="Area2D" parent="." groups=[
+"damage",
+]]
+position = Vector2( 58.667, 0 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource( 31 )
+disabled = true
+
+[node name="AtkTimer" type="Timer" parent="."]
+wait_time = 0.75
+one_shot = true
 [connection signal="body_entered" from="HitBox" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_DamageArea_body_entered"]
+[connection signal="timeout" from="AtkTimer" to="." method="_on_AtkTimer_timeout"]
