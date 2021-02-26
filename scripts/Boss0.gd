@@ -3,7 +3,7 @@ extends KinematicBody2D
 export (int) var speed = 130
 const teleportSpeed = 300
 export (int) var grav = 50
-export (int) var hearts = 3
+export (int) var hearts = 4
 
 onready var player = get_parent().get_node("Player")
 
@@ -71,12 +71,14 @@ func skill0(): #skill de teleporte do boss
 		runFlag = false
 		$TimerSkl0.start()
 		$AnimatedSprite.play("skill0")
+		yield($AnimatedSprite, "animation_finished")
 		position.x = player.position.x + 85
 	else:
 		if dif <= 80:
 			runFlag = false
 			$TimerSkl0.start()
 			$AnimatedSprite.play("skill0")
+			yield($AnimatedSprite, "animation_finished")
 			position.x = player.position.x + 300
 
 func _on_TimerSkl0_timeout():
@@ -112,16 +114,25 @@ func get_pos():
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
+	if hearts == 0:
+		$AnimatedSprite.play("die")
+		yield($AnimatedSprite, "animation_finished")
+		queue_free()
+		
+		pass
 	dif = abs(position.x - player.position.x)
 	vel.y += grav
 	get_pos()
 	if atkFlag:
 		if atkType == 0:
 			$AnimatedSprite.play("atk0")
+			yield($AnimatedSprite, "animation_finished")
 		elif atkType == 1:
 			$AnimatedSprite.play("atk1")
+			yield($AnimatedSprite, "animation_finished")
 		elif atkType == 2:
 			$AnimatedSprite.play("skill0")
+			yield($AnimatedSprite, "animation_finished")
 	else:
 		vel = move_and_slide(Vector2(dir,vel.y), Vector2.UP)
 		if dif<=80:
@@ -130,9 +141,14 @@ func _physics_process(delta):
 			$AnimatedSprite.play("run")
 		elif atkType == 2:
 			$AnimatedSprite.play("skill0")
+			yield($AnimatedSprite, "animation_finished")
 		else:
 			$AnimatedSprite.play("idle")
 
 func _on_Cooldown_timeout():
 	atkReady = true
 
+
+
+func _on_AnimatedSprite_animation_finished():
+	pass # Replace with function body.

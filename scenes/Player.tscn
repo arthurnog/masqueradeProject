@@ -160,7 +160,7 @@ jump = -1150
 scale = Vector2( 2, 2 )
 frames = SubResource( 28 )
 animation = "atk"
-frame = 5
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

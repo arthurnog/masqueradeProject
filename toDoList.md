@@ -4,7 +4,7 @@
     -jump(done)
 3.Test (1)(done)
 4.Enemy simple (player attack, damage) (done)
-5.Boss
+5.Boss (70%)
 6.Level
 7.Assets
 8.UI/UX
