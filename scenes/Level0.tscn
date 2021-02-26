@@ -384,7 +384,7 @@ points = PoolVector2Array( 32.2798, 32.1083, 0.129639, 32.1083, 0.129639, -0.041
 [node name="Level0" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 200, 96 )
+position = Vector2( 208, 440 )
 scale = Vector2( 1, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -397,5 +397,5 @@ tile_data = PoolIntArray( 2031616, 9, 0, 2031617, 9, 0, 2031618, 9, 0, 2031619, 
 position = Vector2( 976, 472 )
 
 [node name="Boss0" parent="." instance=ExtResource( 4 )]
-position = Vector2( 616, 440 )
+position = Vector2( 888, 448 )
 scale = Vector2( 2.5, 2.5 )

@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-export (int) var speed = 130
-export (int) var grav = 50
+export (int) var speed = 140
+export (int) var grav = 45
 export (int) var jump = -1000
 export (int) var hearts = 3
 
@@ -16,7 +16,6 @@ func atack():
 	$AtkTimer.start()
 
 func get_input():
-	print(hearts)
 	vel.x = 0
 	var R = Input.is_action_pressed("ui_right")
 	var L = Input.is_action_pressed("ui_left")

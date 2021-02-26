@@ -78,16 +78,13 @@ func skill0(): #skill de teleporte do boss
 		yield($AnimatedSprite, "animation_finished")
 		position.x = player.position.x + 85
 	else:
-		if dif <= 100:
+		if dif <= 80:
 			runFlag = false
 			$TimerSkl0.start()
 			$AnimatedSprite.play("skill0")
 			yield($AnimatedSprite, "animation_finished")
-			randomize()
-			if randi()%2 == 1:
-				position.x = player.position.x + 115
-			else:
-				position.x = player.position.x - 115
+			position.x = player.position.x + 300
+
 func _on_TimerSkl0_timeout():
 	runFlag = true
 
@@ -127,39 +124,6 @@ func _physics_process(delta):
 		yield($AnimatedSprite, "animation_finished")
 		queue_free()
 	
-	if not runFlag:
-		vel.x = 0
-	
-	dif = abs(position.x - player.position.x)
-	vel.y += grav
-	vel = move_and_slide(vel, Vector2.UP)
-	
-	if not $Cooldown.is_stopped():
-		atkReady = false
-	
-	if $VisibilityNotifier2D.is_on_screen():
-		active = true
-	if active:
-		get_pos()
-		if atkFlag:
-			if atkType == 0:
-				$AnimatedSprite.play("atk0")
-				vel.x = 0
-				yield($AnimatedSprite, "animation_finished")
-			elif atkType == 1:
-				$AnimatedSprite.play("atk1")
-				vel.x = 0
-				yield($AnimatedSprite, "animation_finished")
-			elif atkType == 2:
-				$AnimatedSprite.play("skill0")
-				yield($AnimatedSprite, "animation_finished")
-		else:
-			if dif<=80:
-				randAtk()
-			if vel.x != 0:
-				$AnimatedSprite.play("run")
-			else:
-				$AnimatedSprite.play("idle")
 
 func _on_Cooldown_timeout():
 	atkReady = true
@@ -168,3 +132,4 @@ func _on_Cooldown_timeout():
 
 func _on_AnimatedSprite_animation_finished():
 	pass # Replace with function body.
+

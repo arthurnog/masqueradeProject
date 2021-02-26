@@ -708,7 +708,7 @@ radius = 16.0
 height = 48.0
 
 [sub_resource type="RectangleShape2D" id=169]
-extents = Vector2( 16, 32 )
+extents = Vector2( 24, 32 )
 
 [node name="Boss0" type="KinematicBody2D" groups=[
 "boss",
@@ -722,8 +722,8 @@ shape = SubResource( 1 )
 position = Vector2( 0, 8 )
 scale = Vector2( 0.9375, 0.9375 )
 frames = SubResource( 167 )
-animation = "die"
-frame = 36
+animation = "skill0"
+frame = 13
 playing = true
 
 [node name="DamageArea1" type="Area2D" parent="." groups=[
@@ -737,7 +737,10 @@ shape = SubResource( 168 )
 [node name="DamageArea0" type="Area2D" parent="." groups=[
 "damage",
 ]]
-position = Vector2( 32, 0 )
+position = Vector2( 32, -8 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea0"]
 shape = SubResource( 169 )
@@ -761,12 +764,14 @@ wait_time = 1.8
 one_shot = true
 
 [node name="Cooldown" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 4.737
 one_shot = true
 
 [node name="TimerSkl0" type="Timer" parent="."]
 wait_time = 0.87
 one_shot = true
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="TimerAtk0" to="." method="_on_TimerAtk0_timeout"]
 [connection signal="timeout" from="TimerAtk1" to="." method="_on_TimerAtk1_timeout"]
