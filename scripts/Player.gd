@@ -16,6 +16,7 @@ func atack():
 	$AtkTimer.start()
 
 func get_input():
+	print(hearts)
 	vel.x = 0
 	var R = Input.is_action_pressed("ui_right")
 	var L = Input.is_action_pressed("ui_left")
@@ -28,27 +29,21 @@ func get_input():
 		if atkFlag:
 			$AnimatedSprite.play("atk")
 		else:
-			$AnimatedSprite.play("run")
+			if is_on_floor():
+				$AnimatedSprite.play("run")
 	if L:
 		vel.x -= 1
 		$AnimatedSprite.flip_h = true
 		if atkFlag:
 			$AnimatedSprite.play("atk")
 		else:
-			$AnimatedSprite.play("run")
+			if is_on_floor():
+				$AnimatedSprite.play("run")
 	if U and is_on_floor():
 		vel.y += jump
 		$AnimatedSprite.play("jump")
 	if A:
 		atack()
-	#	yield($AnimatedSprite, "animation_finished")
-	
-	#if vel.x != 0 and is_on_floor() and not A:
-	#	$AnimatedSprite.play("run")
-	#if vel.x == 0 and is_on_floor() and not A:
-	#	$AnimatedSprite.play("idle")
-	#if not is_on_floor() and not A:
-	#	$AnimatedSprite.play("jump")
 		
 	if is_on_floor() and vel.x == 0 and not atkFlag:
 		$AnimatedSprite.play("idle")
@@ -86,8 +81,13 @@ func _on_AtkTimer_timeout():
 
 
 func _on_DamageArea_body_entered(body):
-	print("swoosh")
 	if body.is_in_group("enemy"):
 		body.queue_free()
-		
+	
+	if body.is_in_group("boss"):
+		body.hearts -= 1
 
+
+func _on_HitBox_area_entered(area):
+	if area.is_in_group("damage"):
+		hearts -= 1

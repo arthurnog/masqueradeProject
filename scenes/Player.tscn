@@ -196,6 +196,7 @@ drag_margin_v_enabled = true
 smoothing_enabled = true
 drag_margin_left = 0.37
 drag_margin_top = 0.37
+[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_DamageArea_body_entered"]
 [connection signal="timeout" from="AtkTimer" to="." method="_on_AtkTimer_timeout"]

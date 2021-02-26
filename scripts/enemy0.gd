@@ -19,6 +19,7 @@ func get_pos():
 		$AnimatedSprite.flip_h = false
 	vel.x = vel.x*speed
 
+# warning-ignore:unused_argument
 func _physics_process(delta):
 	vel.y = vel.y + grav
 	get_pos()
