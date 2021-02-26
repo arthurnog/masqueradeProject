@@ -105,7 +105,7 @@ func randAtk():
 		skill0()
 
 func get_pos():
-	vel = Vector2()
+	vel.x = 0
 	#se o inimigo estiver a esquerda do player ele anda pra direita
 	#se estiver a direita ele anda pra esquerda
 	if position.x > player.position.x:

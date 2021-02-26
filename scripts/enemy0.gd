@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export (int) var speed = 100
-export (int) var grav = 50
+export (int) var grav = 100
 
 onready var player = get_parent().get_node("Player")
 
@@ -15,7 +15,7 @@ func _ready():
 	active = false
 
 func get_pos():
-	vel = Vector2()
+	vel.x = 0
 	#se o inimigo estiver a esquerda do player ele anda pra direita
 	#se estiver a direita ele anda pra esquerda
 	if position.x > player.position.x:

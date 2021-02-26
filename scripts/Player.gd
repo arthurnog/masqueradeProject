@@ -57,6 +57,8 @@ func _physics_process(delta):
 	vel.y = vel.y + grav
 	get_input()
 	vel = move_and_slide(vel, Vector2.UP)
+	if vel.y != 0:
+		$AnimatedSprite.play("jump")
 	
 	if atkFlag:
 		$DamageArea/CollisionShape2D.disabled = false
