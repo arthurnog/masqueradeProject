@@ -1,42 +1,66 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/visual/placeHolders/masked_orc_idle_anim_f2.png" type="Texture" id=1]
 [ext_resource path="res://assets/visual/placeHolders/masked_orc_idle_anim_f3.png" type="Texture" id=2]
 [ext_resource path="res://assets/visual/placeHolders/masked_orc_idle_anim_f1.png" type="Texture" id=3]
-[ext_resource path="res://assets/visual/placeHolders/masked_orc_run_anim_f1.png" type="Texture" id=4]
-[ext_resource path="res://assets/visual/placeHolders/masked_orc_run_anim_f2.png" type="Texture" id=5]
-[ext_resource path="res://assets/visual/placeHolders/masked_orc_run_anim_f0.png" type="Texture" id=6]
+[ext_resource path="res://assets/visual/minion_PH_run.png" type="Texture" id=4]
 [ext_resource path="res://assets/visual/placeHolders/masked_orc_idle_anim_f0.png" type="Texture" id=7]
-[ext_resource path="res://assets/visual/placeHolders/masked_orc_run_anim_f3.png" type="Texture" id=8]
 [ext_resource path="res://scripts/enemy0.gd" type="Script" id=9]
 
-[sub_resource type="CapsuleShape2D" id=1]
-height = 60.0
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 66, 48 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 4 )
+region = Rect2( 66, 0, 66, 48 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 4 )
+region = Rect2( 132, 0, 66, 48 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 198, 0, 66, 48 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 264, 0, 66, 48 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 4 )
+region = Rect2( 330, 0, 66, 48 )
+
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
 "frames": [ ExtResource( 7 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "idle",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 8 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "run",
-"speed": 8.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "die",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [  ],
 "loop": true,
 "name": "atk",
 "speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "die",
+"speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 25.0181
+height = 37.3874
+
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 25.7252
+height = 37.3042
 
 [node name="enemy0" type="KinematicBody2D" groups=[
 "enemy",
@@ -44,21 +68,26 @@ animations = [ {
 script = ExtResource( 9 )
 speed = 70
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -24 )
-shape = SubResource( 1 )
-
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -10.6066, 1.41421 )
 scale = Vector2( 2, 2 )
-frames = SubResource( 2 )
+frames = SubResource( 7 )
 animation = "run"
-frame = 3
+frame = 4
 playing = true
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0.707092, 4.99137 )
+shape = SubResource( 8 )
+
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 3 )
+position = Vector2( 0, 4.94975 )
+shape = SubResource( 9 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+visible = false
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
